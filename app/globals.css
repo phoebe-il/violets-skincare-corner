@@ -25,7 +25,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
+  --color-muted: var(--muted-ink);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -164,21 +164,43 @@
 
 :root {
   color-scheme: light;
-  --forest: #233f34;
-  --sage: #dfe8dc;
-  --cream: #f4f2eb;
-  --paper: #fffefa;
-  --clay: #b47f59;
-  --line: rgb(35 63 52 / 14%);
-  --muted: rgb(35 63 52 / 70%);
-  --background: var(--cream);
-  --foreground: var(--forest);
+  --plum: #3e2d59;
+  --lavender: #e8e0f3;
+  --lavender-bg: #f8f5fc;
+  --paper: #fffaff;
+  --violet: #7556b3;
+  --line: rgb(62 45 89 / 15%);
+  --muted-ink: rgb(62 45 89 / 72%);
+  --background: var(--lavender-bg);
+  --foreground: var(--plum);
   --card: var(--paper);
-  --card-foreground: var(--forest);
-  --primary: var(--forest);
+  --card-foreground: var(--plum);
+  --popover: var(--paper);
+  --popover-foreground: var(--plum);
+  --primary: var(--plum);
   --primary-foreground: var(--paper);
+  --secondary: var(--lavender);
+  --secondary-foreground: var(--plum);
+  --muted: var(--lavender);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--lavender);
+  --accent-foreground: var(--plum);
   --border: var(--line);
-  --ring: var(--clay);
+  --input: var(--line);
+  --ring: var(--violet);
+  --chart-1: var(--violet);
+  --chart-2: #8f77bf;
+  --chart-3: #b5a2d4;
+  --chart-4: #d3c7e8;
+  --chart-5: #e8e0f3;
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--plum);
+  --sidebar-primary: var(--plum);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--lavender);
+  --sidebar-accent-foreground: var(--plum);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--violet);
   --font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
   --font-serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
 }
@@ -194,8 +216,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--cream);
-  color: var(--forest);
+  background: var(--lavender-bg);
+  color: var(--plum);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.55;
@@ -232,7 +254,7 @@ svg {
   transform: translateY(-160%);
   border-radius: 999px;
   background: var(--paper);
-  color: var(--forest);
+  color: var(--plum);
   padding: 10px 16px;
   font-weight: 700;
   box-shadow: 0 8px 24px rgb(0 0 0 / 16%);
@@ -243,7 +265,7 @@ svg {
 }
 
 :focus-visible {
-  outline: 3px solid var(--clay);
+  outline: 3px solid var(--violet);
   outline-offset: 3px;
 }
 
@@ -271,7 +293,7 @@ svg {
   height: 34px;
   place-items: center;
   border-radius: 50%;
-  background: var(--forest);
+  background: var(--plum);
   color: var(--paper);
 }
 
@@ -281,9 +303,9 @@ svg {
 }
 
 .brand-name {
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
 }
 
 .brand-name span {
@@ -298,7 +320,7 @@ svg {
 }
 
 .site-nav a {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.84rem;
   font-weight: 600;
   text-decoration: none;
@@ -306,13 +328,13 @@ svg {
 }
 
 .site-nav a:hover {
-  color: var(--forest);
+  color: var(--plum);
 }
 
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--forest);
+  background: var(--plum);
   color: var(--paper);
 }
 
@@ -322,7 +344,7 @@ svg {
   right: -170px;
   width: 690px;
   height: 690px;
-  border: 1px solid rgb(255 254 250 / 9%);
+  border: 1px solid rgb(255 250 255 / 9%);
   border-radius: 50%;
   content: "";
   pointer-events: none;
@@ -346,7 +368,7 @@ svg {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -358,7 +380,7 @@ svg {
   align-items: center;
   gap: 9px;
   margin-bottom: 20px;
-  color: rgb(255 254 250 / 75%);
+  color: rgb(255 250 255 / 75%);
 }
 
 .eyebrow-dot {
@@ -380,14 +402,14 @@ svg {
 }
 
 .hero h1 em {
-  color: var(--sage);
+  color: var(--lavender);
   font-weight: 500;
 }
 
 .hero-description {
   max-width: 500px;
   margin: 25px 0 0;
-  color: rgb(255 254 250 / 76%);
+  color: rgb(255 250 255 / 76%);
   font-size: clamp(0.96rem, 1.25vw, 1.08rem);
   line-height: 1.7;
 }
@@ -401,7 +423,7 @@ svg {
   padding: 0 20px;
   border-radius: 999px;
   background: var(--paper);
-  color: var(--forest);
+  color: var(--plum);
   font-size: 0.83rem;
   font-weight: 700;
   text-decoration: none;
@@ -410,7 +432,7 @@ svg {
 
 .hero-link:hover {
   transform: translateY(-2px);
-  background: var(--sage);
+  background: var(--lavender);
 }
 
 .hero-link svg,
@@ -424,7 +446,7 @@ svg {
   align-items: center;
   gap: 18px;
   margin-top: 32px;
-  color: rgb(255 254 250 / 68%);
+  color: rgb(255 250 255 / 68%);
   font-size: 0.73rem;
   letter-spacing: 0.01em;
 }
@@ -439,7 +461,7 @@ svg {
 .fact-divider {
   width: 1px;
   height: 22px;
-  background: rgb(255 254 250 / 24%);
+  background: rgb(255 250 255 / 24%);
 }
 
 .hero-feature {
@@ -457,7 +479,7 @@ svg {
   margin-left: auto;
   place-items: center;
   border-radius: 48% 48% 23px 23px;
-  background: var(--sage);
+  background: var(--lavender);
 }
 
 .hero-product-backdrop {
@@ -465,7 +487,7 @@ svg {
   z-index: -1;
   inset: 13px;
   border-radius: inherit;
-  background: radial-gradient(ellipse at 50% 42%, var(--paper), #d9e2d5 76%);
+  background: radial-gradient(ellipse at 50% 42%, var(--paper), #ded3ef 76%);
 }
 
 .hero-product-image {
@@ -487,10 +509,10 @@ svg {
   height: 76px;
   align-content: center;
   justify-items: center;
-  border: 1px solid rgb(35 63 52 / 12%);
+  border: 1px solid rgb(62 45 89 / 12%);
   border-radius: 50%;
   background: var(--paper);
-  color: var(--forest);
+  color: var(--plum);
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -514,7 +536,7 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--sage);
+  color: var(--lavender);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -533,7 +555,7 @@ svg {
 }
 
 .hero-feature-copy > span:last-child {
-  color: rgb(255 254 250 / 67%);
+  color: rgb(255 250 255 / 67%);
   font-size: 0.78rem;
 }
 
@@ -559,7 +581,7 @@ svg {
 .section-heading h2,
 .reference-heading h2 {
   margin: 0;
-  color: var(--forest);
+  color: var(--plum);
   font-family: var(--font-serif);
   font-size: clamp(2.05rem, 4vw, 3rem);
   font-weight: 500;
@@ -570,7 +592,7 @@ svg {
 .section-heading > div > p:last-child,
 .reference-heading > div > p:last-child {
   margin: 10px 0 0;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.9rem;
 }
 
@@ -582,7 +604,7 @@ svg {
   padding: 9px 13px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.72rem;
   font-weight: 600;
 }
@@ -590,7 +612,7 @@ svg {
 .section-badge svg {
   width: 15px;
   height: 15px;
-  color: var(--forest);
+  color: var(--plum);
 }
 
 .routine-layout {
@@ -612,7 +634,7 @@ svg {
   padding: 5px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgb(35 63 52 / 5%);
+  background: rgb(62 45 89 / 5%);
   scrollbar-width: none;
 }
 
@@ -631,7 +653,7 @@ svg {
   border: 1px solid transparent;
   border-radius: 999px;
   background: transparent;
-  color: var(--muted);
+  color: var(--muted-ink);
   cursor: pointer;
   font-size: 0.77rem;
   font-weight: 700;
@@ -646,14 +668,14 @@ svg {
 }
 
 .routine-tab:hover:not([aria-selected="true"]) {
-  background: rgb(255 254 250 / 72%);
-  color: var(--forest);
+  background: rgb(255 250 255 / 72%);
+  color: var(--plum);
 }
 
 .routine-tab[aria-selected="true"] {
-  background: var(--forest);
+  background: var(--plum);
   color: var(--paper);
-  box-shadow: 0 3px 9px rgb(35 63 52 / 16%);
+  box-shadow: 0 3px 9px rgb(62 45 89 / 16%);
 }
 
 .routine-panel {
@@ -662,7 +684,7 @@ svg {
   border: 1px solid var(--line);
   border-radius: 25px;
   background: var(--paper);
-  box-shadow: 0 10px 30px rgb(35 63 52 / 4%);
+  box-shadow: 0 10px 30px rgb(62 45 89 / 4%);
 }
 
 .routine-panel-heading {
@@ -679,7 +701,7 @@ svg {
 
 .routine-panel-heading h2 {
   margin: 0;
-  color: var(--forest);
+  color: var(--plum);
   font-family: var(--font-serif);
   font-size: clamp(1.85rem, 3.1vw, 2.5rem);
   font-weight: 500;
@@ -690,7 +712,7 @@ svg {
 .routine-panel-heading > div > p:last-child {
   max-width: 490px;
   margin: 8px 0 0;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.83rem;
 }
 
@@ -700,7 +722,7 @@ svg {
   padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.68rem;
   font-weight: 700;
   white-space: nowrap;
@@ -720,9 +742,9 @@ svg {
   align-items: start;
   gap: 16px;
   padding: 13px;
-  border: 1px solid rgb(35 63 52 / 10%);
+  border: 1px solid rgb(62 45 89 / 10%);
   border-radius: 18px;
-  background: rgb(244 242 235 / 54%);
+  background: rgb(232 224 243 / 54%);
 }
 
 .product-visual {
@@ -732,7 +754,7 @@ svg {
   overflow: hidden;
   place-items: center;
   border-radius: 13px;
-  background: #edf0e8;
+  background: #f2edf8;
 }
 
 .product-image {
@@ -747,14 +769,14 @@ svg {
   align-content: center;
   justify-items: center;
   gap: 2px;
-  color: var(--forest);
+  color: var(--plum);
 }
 
 .product-visual-water .water-icon {
   width: 26px;
   height: 26px;
   margin-bottom: 3px;
-  color: #688274;
+  color: #836cb3;
 }
 
 .product-visual-water > span {
@@ -764,7 +786,7 @@ svg {
 }
 
 .product-visual-water small {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.61rem;
   letter-spacing: 0.04em;
 }
@@ -787,7 +809,7 @@ svg {
   align-items: center;
   gap: 7px;
   margin: 0;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -801,14 +823,14 @@ svg {
   flex: 0 0 auto;
   place-items: center;
   border-radius: 50%;
-  background: var(--sage);
-  color: var(--forest);
+  background: var(--lavender);
+  color: var(--plum);
   font-size: 0.61rem;
   letter-spacing: 0;
 }
 
 .step-count {
-  color: rgb(35 63 52 / 44%);
+  color: rgb(62 45 89 / 52%);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -816,7 +838,7 @@ svg {
 
 .product-name {
   margin: 0;
-  color: var(--forest);
+  color: var(--plum);
   font-family: var(--font-serif);
   font-size: clamp(1.17rem, 1.6vw, 1.42rem);
   font-weight: 500;
@@ -827,7 +849,7 @@ svg {
 
 .product-summary {
   margin: 5px 0 0;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.76rem;
   line-height: 1.45;
 }
@@ -843,10 +865,10 @@ svg {
 
 .ingredient-list li {
   padding: 4px 8px;
-  border: 1px solid rgb(35 63 52 / 12%);
+  border: 1px solid rgb(62 45 89 / 12%);
   border-radius: 999px;
-  background: rgb(223 232 220 / 42%);
-  color: var(--forest);
+  background: rgb(232 224 243 / 42%);
+  color: var(--plum);
   font-size: 0.61rem;
   font-weight: 600;
   line-height: 1.2;
@@ -854,7 +876,7 @@ svg {
 
 .product-help {
   margin-top: 10px;
-  border-top: 1px solid rgb(35 63 52 / 10%);
+  border-top: 1px solid rgb(62 45 89 / 10%);
 }
 
 .product-help summary {
@@ -863,7 +885,7 @@ svg {
   justify-content: space-between;
   gap: 10px;
   min-height: 35px;
-  color: var(--forest);
+  color: var(--plum);
   cursor: pointer;
   font-size: 0.7rem;
   font-weight: 700;
@@ -887,7 +909,7 @@ svg {
 
 .product-help p {
   margin: 0 0 9px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.74rem;
   line-height: 1.55;
 }
@@ -897,26 +919,26 @@ svg {
   gap: 8px;
   margin: 9px 0 0;
   padding: 8px 10px;
-  border-left: 2px solid var(--clay);
+  border-left: 2px solid var(--violet);
   border-radius: 0 9px 9px 0;
   background: rgb(180 127 89 / 9%);
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.7rem;
   line-height: 1.45;
 }
 
 .product-tip strong {
   flex: 0 0 auto;
-  color: var(--forest);
+  color: var(--plum);
 }
 
 .routine-note {
   margin-top: 14px;
   padding: 15px 17px;
-  border: 1px solid rgb(35 63 52 / 12%);
+  border: 1px solid rgb(62 45 89 / 12%);
   border-radius: 15px;
-  background: rgb(223 232 220 / 52%);
-  color: var(--forest);
+  background: rgb(232 224 243 / 52%);
+  color: var(--plum);
 }
 
 .note-heading {
@@ -945,7 +967,7 @@ svg {
   gap: 5px;
   margin: 8px 0 0;
   padding-left: 20px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.76rem;
   line-height: 1.5;
 }
@@ -956,7 +978,7 @@ svg {
   padding: 23px 20px 18px;
   border: 1px solid var(--line);
   border-radius: 23px;
-  background: #e9ede5;
+  background: #eee9f7;
 }
 
 .overview-heading {
@@ -965,7 +987,7 @@ svg {
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 17px;
-  border-bottom: 1px solid rgb(35 63 52 / 12%);
+  border-bottom: 1px solid rgb(62 45 89 / 12%);
 }
 
 .overview-eyebrow {
@@ -974,7 +996,7 @@ svg {
 
 .overview-heading h3 {
   margin: 0;
-  color: var(--forest);
+  color: var(--plum);
   font-family: var(--font-serif);
   font-size: 1.55rem;
   font-weight: 500;
@@ -995,11 +1017,11 @@ svg {
   grid-template-columns: 25px minmax(0, 1fr);
   gap: 10px;
   padding: 12px 0;
-  border-bottom: 1px solid rgb(35 63 52 / 10%);
+  border-bottom: 1px solid rgb(62 45 89 / 10%);
 }
 
 .overview-index {
-  color: rgb(35 63 52 / 56%);
+  color: rgb(62 45 89 / 56%);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1014,12 +1036,12 @@ svg {
 }
 
 .overview-step-copy strong {
-  color: var(--forest);
+  color: var(--plum);
   font-size: 0.75rem;
 }
 
 .overview-step-copy > span {
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.69rem;
   line-height: 1.4;
 }
@@ -1031,14 +1053,14 @@ svg {
   margin-top: 15px;
   padding: 12px;
   border-radius: 13px;
-  background: var(--forest);
+  background: var(--plum);
   color: var(--paper);
 }
 
 .overview-reminder > svg {
   width: 18px;
   height: 18px;
-  color: var(--sage);
+  color: var(--lavender);
 }
 
 .overview-reminder strong {
@@ -1048,7 +1070,7 @@ svg {
 
 .overview-reminder p {
   margin: 4px 0 0;
-  color: rgb(255 254 250 / 76%);
+  color: rgb(255 250 255 / 76%);
   font-size: 0.68rem;
   line-height: 1.45;
 }
@@ -1058,7 +1080,7 @@ svg {
   align-items: center;
   gap: 7px;
   margin: 15px 0 0;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-family: var(--font-serif);
   font-size: 0.91rem;
   font-style: italic;
@@ -1091,7 +1113,7 @@ svg {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 50%;
-  color: var(--forest);
+  color: var(--plum);
 }
 
 .reference-mark svg {
@@ -1102,7 +1124,7 @@ svg {
 .scroll-hint {
   display: none;
   margin: 0 0 9px;
-  color: var(--muted);
+  color: var(--muted-ink);
   font-size: 0.73rem;
 }
 
@@ -1111,7 +1133,7 @@ svg {
   border: 1px solid var(--line);
   border-radius: 19px;
   background: var(--paper);
-  scrollbar-color: rgb(35 63 52 / 35%) transparent;
+  scrollbar-color: rgb(62 45 89 / 35%) transparent;
   scrollbar-width: thin;
 }
 
@@ -1129,14 +1151,14 @@ svg {
 .reference-table th,
 .reference-table td {
   padding: 14px 16px;
-  border-bottom: 1px solid rgb(35 63 52 / 10%);
+  border-bottom: 1px solid rgb(62 45 89 / 10%);
   vertical-align: top;
   font-size: 0.78rem;
   line-height: 1.45;
 }
 
 .reference-table thead th {
-  background: var(--forest);
+  background: var(--plum);
   color: var(--paper);
   font-size: 0.68rem;
   font-weight: 700;
@@ -1153,8 +1175,8 @@ svg {
 
 .reference-table tbody th {
   width: 135px;
-  background: rgb(223 232 220 / 54%);
-  color: var(--forest);
+  background: rgb(232 224 243 / 54%);
+  color: var(--plum);
   font-size: 0.74rem;
   font-weight: 700;
 }
@@ -1164,49 +1186,6 @@ svg {
   border-bottom: 0;
 }
 
-.site-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 42px 20px 38px;
-  background: #e9ede5;
-  color: var(--muted);
-  text-align: center;
-}
-
-.footer-mark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  margin-bottom: 13px;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--forest);
-  color: var(--paper);
-}
-
-.footer-mark svg {
-  width: 16px;
-  height: 16px;
-}
-
-.site-footer p {
-  max-width: 610px;
-  margin: 3px 0;
-  font-size: 0.74rem;
-  line-height: 1.5;
-}
-
-.back-to-top {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 17px;
-  color: var(--forest);
-  font-size: 0.73rem;
-  font-weight: 700;
-  text-decoration: none;
-}
 
 @media (max-width: 980px) {
   .routine-layout {
@@ -1306,7 +1285,9 @@ svg {
   }
 
   .brand-name {
-    font-size: 0.98rem;
+    max-width: 150px;
+    font-size: 0.84rem;
+    line-height: 1.12;
   }
 
   .hero::before {
@@ -1380,19 +1361,24 @@ svg {
   }
 
   .routine-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    overflow-x: visible;
     margin-bottom: 10px;
   }
 
   .routine-tab {
+    min-width: 0;
     min-height: 40px;
-    gap: 6px;
-    padding: 0 12px;
-    font-size: 0.7rem;
+    gap: 4px;
+    padding: 0 5px;
+    font-size: 0.64rem;
   }
 
   .routine-tab svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .routine-panel {
@@ -1540,8 +1526,17 @@ svg {
     padding: 12px;
   }
 
-  .site-footer {
-    padding: 34px 18px 30px;
+}
+
+@media (max-width: 380px) {
+  .routine-tab {
+    gap: 0;
+    padding: 0 4px;
+    font-size: 0.66rem;
+  }
+
+  .routine-tab svg {
+    display: none;
   }
 }
 

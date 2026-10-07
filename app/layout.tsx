@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Skin Notes | My Skincare Routine',
-  description: 'A thoughtful, easy-to-follow skincare guide with morning, night, extra-time, and pimple-night routines.',
+  title: "Violet's Skincare Corner | My Skincare Routine",
+  description: "A thoughtful skincare guide with morning, night, extra-time, and pimple-night routines from Violet's Skincare Corner.",
   generator: 'v0.app',
   icons: {
     icon: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#f4f2eb',
+  themeColor: '#f8f5fc',
 }
 
 export default function RootLayout({

@@ -9,6 +9,7 @@ type ProductId =
   | "face"
   | "olay"
   | "aze"
+  | "pore"
   | "pim"
 
 export type RoutineStep = {
@@ -101,13 +102,21 @@ export const PRODUCTS: Record<ProductId, Product> = {
     help: "Azelaic acid is one of the gentlest actives. It helps calm redness, fade marks and keep breakouts down, while ceramides and squalane cushion it so skin stays soft. It does not make skin sun-sensitive, though daily sunscreen is still a must.",
     tip: "Apply a thin layer over the whole face, avoiding the eyes. If skin tingles, use it every other night at first.",
   },
+  pore: {
+    name: "QuickFX Pore Eraser Moisturizing Cream",
+    image: "/products/pore.jpg",
+    short: "A gentle moisturizer for a calm finish after active treatments.",
+    ingredients: ["Niacinamide", "Shea Butter", "Aloe Vera", "Glacial Oceanic Mineral Water"],
+    help: "A lightweight moisturizing cream that helps reduce the look of pores and nourish skin. Niacinamide brightens and fades dark spots, while shea butter and aloe moisturize and soothe. It has no vitamin C or exfoliating acids, so it is a calm finish after an active treatment.",
+    tip: "Massage over the face and neck after cleansing and toning.",
+  },
   pim: {
     name: "QuickFX Pimple Eraser Cream",
     image: "/products/pimple.jpg",
     short: "A targeted leave-on treatment for individual pimples.",
     ingredients: ["Salicylic Acid (1%)", "Glycolic Acid (0.5%)", "Niacinamide (0.5%)", "Zinc Oxide", "Vitamin C"],
     help: "Dries up pimples, helps prevent dark scars and keeps pores clear, while the toner and moisturizer around it keep the rest of your face comfortable.",
-    tip: "Dab on pimples only, in a thin layer. Do not pick at them.",
+    tip: "Dab on pimples only, in a thin layer. Do not pick at them. This cream already combines salicylic acid, glycolic acid and vitamin C, so do not layer other acids or vitamin C on top.",
   },
 }
 
@@ -145,30 +154,34 @@ export const ROUTINES: Routine[] = [
     tabLabel: "Extra time",
     kicker: "AN OPTIONAL ACTIVE",
     title: "A little extra care",
-    intro: "The night routine plus a gentle azelaic acid treatment before moisturizer.",
+    intro: "The night routine plus azelaic acid, finished with a calming moisturizer.",
     steps: [
       { productId: "face", action: "Cleanse" },
       { productId: "toner", action: "Tone" },
       { productId: "aze", action: "Treat" },
-      { productId: "olay", action: "Moisturize" },
+      { productId: "pore", action: "Moisturize" },
     ],
-    overviewNote: "Apply a thin layer. If your skin tingles, start by using it every other night.",
-    note: ["If your skin feels tingly, apply moisturizer first and the cream on top."],
+    overviewNote: "Azelaic acid is the extra step. Finish with Pore Eraser instead of Olay to keep the routine gentle.",
+    note: [
+      "Why not the Olay moisturizer tonight? Olay's vitamin C + Peptide 24 also contains lactic acid and vitamin C. Stacking it on 20% azelaic acid adds up to a lot of actives at once and can cause stinging, redness, or dryness. The Pore Eraser cream has none of those, so it keeps the night gentle.",
+      "If your skin feels tingly, apply the moisturizer first and the azelaic cream on top.",
+    ],
   },
   {
     id: "pimples",
     tabLabel: "Pimples",
     kicker: "TARGETED CARE",
     title: "For pimple nights",
-    intro: "The night routine plus a spot treatment on the pimples only.",
+    intro: "The night routine plus a spot treatment on the pimples only, finished with a calm moisturizer.",
     steps: [
       { productId: "face", action: "Cleanse" },
       { productId: "toner", action: "Tone" },
       { productId: "pim", action: "Spot treat" },
-      { productId: "olay", action: "Moisturize" },
+      { productId: "pore", action: "Moisturize" },
     ],
-    overviewNote: "Use the treatment only on spots, and skip azelaic acid this evening.",
+    overviewNote: "Apply Pimple Eraser to spots only. Pore Eraser replaces Olay, and azelaic acid is skipped tonight.",
     note: [
+      "Is salicylic acid bad with vitamin C? Not dangerous, and they do not cancel each other out. The real concern is irritation, because both can sting and dry the skin when layered, and vitamin C is often best kept to separate times. Pimple Eraser already contains both, plus glycolic acid, so adding Olay (more vitamin C and lactic acid) would stack too many actives. That is why the Pore Eraser cream replaces Olay on pimple nights.",
       "Skip the azelaic acid cream on pimple nights. Using both stacks a lot of actives and can cause dryness or irritation.",
       "Persistent or painful acne is worth checking with a dermatologist.",
     ],
@@ -179,6 +192,6 @@ export const QUICK_REFERENCE_ROWS: QuickReferenceRow[] = [
   { step: "Cleanse", morning: "Water", night: "Herb Day 365 Foaming Cleanser", extra: "Same", pimples: "Same" },
   { step: "Tone", morning: "Celeteque Hydration Toner", night: "Celeteque Hydration Toner", extra: "Same", pimples: "Same" },
   { step: "Treat", morning: "TXA 377 Dark Spot Serum", night: "None", extra: "SkinFX Azelaic Acid 20% Cream", pimples: "QuickFX Pimple Eraser (spots only)" },
-  { step: "Moisturize", morning: "Hyalucera Moisturizer", night: "Olay Vitamin C + Peptide 24", extra: "Same", pimples: "Same" },
+  { step: "Moisturize", morning: "Hyalucera Moisturizer", night: "Olay Vitamin C + Peptide 24", extra: "QuickFX Pore Eraser Moisturizing Cream", pimples: "QuickFX Pore Eraser Moisturizing Cream" },
   { step: "Protect", morning: "Skin Aqua UV Gel SPF 50+", night: "None", extra: "None", pimples: "None" },
 ]

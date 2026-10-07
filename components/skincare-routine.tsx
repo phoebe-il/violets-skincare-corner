@@ -236,9 +236,9 @@ export default function SkincareRoutine() {
     <div className="site-shell" id="top">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Skin Notes, back to top">
+        <a className="brand" href="#top" aria-label="Violet's Skincare Corner, back to top">
           <span className="brand-mark"><Leaf aria-hidden="true" /></span>
-          <span className="brand-name">skin<span>notes</span></span>
+          <span className="brand-name">Violet&apos;s <span>Skincare Corner</span></span>
         </a>
         <nav className="site-nav" aria-label="Page navigation">
           <a href="#routine">The routine</a>
@@ -355,12 +355,6 @@ export default function SkincareRoutine() {
         <QuickReference />
       </main>
 
-      <footer className="site-footer">
-        <div className="footer-mark"><Leaf aria-hidden="true" /></div>
-        <p>Manufacturers may reformulate products, so check the packaging for the latest ingredient list.</p>
-        <p>This is general skincare information, not medical advice.</p>
-        <a href="#top" className="back-to-top">Back to top <ArrowUpRight aria-hidden="true" /></a>
-      </footer>
     </div>
   )
 }
