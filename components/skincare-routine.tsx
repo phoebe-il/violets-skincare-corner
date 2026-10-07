@@ -5,12 +5,12 @@ import {
   ArrowUpRight,
   ChevronDown,
   Droplets,
-  Heart,
   Leaf,
   Moon,
   ShieldCheck,
   Sparkles,
   Sun,
+  Target,
 } from 'lucide-react'
 import { useRef, useState, type KeyboardEvent } from 'react'
 import {
@@ -26,7 +26,7 @@ const ROUTINE_ICONS = {
   morning: Sun,
   night: Moon,
   extra: Sparkles,
-  pimples: Heart,
+  pimples: Target,
 }
 
 function ProductVisual({
@@ -58,7 +58,7 @@ function ProductVisual({
         width={420}
         height={420}
         sizes={priority ? '(max-width: 760px) 70vw, 320px' : '(max-width: 640px) 104px, 140px'}
-        className="product-image"
+        className={product.image.endsWith('.png') ? 'product-image product-image-cutout' : 'product-image'}
         priority={priority}
       />
     </div>
