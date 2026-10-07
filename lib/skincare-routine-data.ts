@@ -3,6 +3,7 @@ export type RoutineId = "morning" | "night" | "extra" | "pimples"
 type ProductId =
   | "water"
   | "toner"
+  | "dermax"
   | "txa"
   | "hyalu"
   | "aqua"
@@ -58,12 +59,20 @@ export const PRODUCTS: Record<ProductId, Product> = {
     ingredients: ["Witch Hazel Extract", "Panthenol (Pro-Vitamin B5)", "Glycerin", "Sodium PCA"],
     help: "An alcohol-free toner made for sensitive to dry skin. It picks up the last traces of dirt without drying you out, and leaves skin damp, soft and ready to drink up your serum.",
   },
+  dermax: {
+    name: "Dermax Professional Radiance Morning Serum",
+    image: "/products/dermax.png",
+    short: "A lightweight brightening and antioxidant serum for a more radiant morning complexion.",
+    ingredients: ["Alpha-Arbutin", "Licorice Root Extract", "Carnosine", "Sodium Hyaluronate", "Hyaluronic Acid"],
+    help: "Your morning radiance step. Alpha-arbutin and licorice root extract help brighten the look of dullness and dark spots, carnosine adds antioxidant support for the day ahead, and the hyaluronic acids keep skin hydrated and smooth under your moisturizer and sunscreen.",
+    tip: "Contains sweet orange peel oil, a natural fragrance. Patch-test on your jaw or behind your ear for a few days first, and stop if you notice stinging or redness.",
+  },
   txa: {
     name: "The Originote TXA 377 Dark Spot Serum",
     image: "/products/txa.jpg",
     short: "A brightening serum for the look of dark spots and uneven tone.",
     ingredients: ["Tranexamic Acid", "Niacinamide (Vitamin B3)", "Vitamin E", "Ceramides", "Peony Extract"],
-    help: "Your brightening step. Tranexamic acid helps fade dark spots and discoloration, while niacinamide evens tone and refines pores. Ceramides and vitamin E help keep skin from feeling dry.",
+    help: "Your night-time brightening step. Tranexamic acid helps fade dark spots and discoloration, while niacinamide evens tone and refines pores. Ceramides and vitamin E help keep skin from feeling dry. It works just as well at night, and it is gentle enough to sit under your moisturizer.",
   },
   hyalu: {
     name: "The Originote Hyalucera Moisturizer",
@@ -130,24 +139,34 @@ export const ROUTINES: Routine[] = [
     steps: [
       { productId: "water", action: "Rinse" },
       { productId: "toner", action: "Tone" },
-      { productId: "txa", action: "Brighten" },
+      { productId: "dermax", action: "Brighten" },
       { productId: "hyalu", action: "Moisturize" },
       { productId: "aqua", action: "Protect" },
     ],
     overviewNote: "Finish with sunscreen. Reapply every 2 to 3 hours when you are outdoors.",
+    note: [
+      "Dermax replaces TXA 377 in the morning. TXA 377 now moves to your night routine, so your brightening serums are spread across the day instead of stacked in one routine.",
+      "Dermax contains no strong acids, retinoids or vitamin C, so it layers comfortably with your toner, moisturizer and sunscreen.",
+    ],
   },
   {
     id: "night",
     tabLabel: "Night",
     kicker: "YOUR PM RITUAL",
     title: "A softer landing",
-    intro: "Cleanse, tone, then moisturize with vitamin C and peptides while you sleep.",
+    intro: "Four steps: cleanse, tone, brighten with TXA 377, then moisturize with vitamin C and peptides while you sleep.",
     steps: [
       { productId: "face", action: "Cleanse" },
       { productId: "toner", action: "Tone" },
+      { productId: "txa", action: "Brighten" },
       { productId: "olay", action: "Moisturize" },
     ],
-    overviewNote: "An easy reset: cleanse away the day, then bring skin back to comfortable hydration.",
+    overviewNote: "A calm reset: cleanse away the day, brighten with TXA 377, then bring skin back to comfortable hydration.",
+    note: [
+      "TXA 377 and Olay both contain niacinamide. Doubling up on niacinamide is fine, and the vitamin C in Olay and the tranexamic acid brighten without clashing.",
+      "With Dermax in the morning and TXA 377 at night, your brightening serums are spread across the day instead of stacked in one routine.",
+      "Dark spots fade slowly, usually over weeks, and daily sunscreen is what keeps the results.",
+    ],
   },
   {
     id: "extra",
@@ -164,6 +183,7 @@ export const ROUTINES: Routine[] = [
     overviewNote: "Azelaic acid is the extra step. Finish with Pore Eraser instead of Olay to keep the routine gentle.",
     note: [
       "Why not the Olay moisturizer tonight? Olay's vitamin C + Peptide 24 also contains lactic acid and vitamin C. Stacking it on 20% azelaic acid adds up to a lot of actives at once and can cause stinging, redness, or dryness. The Pore Eraser cream has none of those, so it keeps the night gentle.",
+      "Skip TXA 377 tonight. Azelaic acid already helps fade marks, and a third active on top is more than your skin needs.",
       "If your skin feels tingly, apply the moisturizer first and the azelaic cream on top.",
     ],
   },
@@ -179,10 +199,11 @@ export const ROUTINES: Routine[] = [
       { productId: "pim", action: "Spot treat" },
       { productId: "pore", action: "Moisturize" },
     ],
-    overviewNote: "Apply Pimple Eraser to spots only. Pore Eraser replaces Olay, and azelaic acid is skipped tonight.",
+    overviewNote: "Apply Pimple Eraser to spots only. Pore Eraser replaces Olay, and azelaic acid and TXA 377 are skipped tonight.",
     note: [
       "Is salicylic acid bad with vitamin C? Not dangerous, and they do not cancel each other out. The real concern is irritation, because both can sting and dry the skin when layered, and vitamin C is often best kept to separate times. Pimple Eraser already contains both, plus glycolic acid, so adding Olay (more vitamin C and lactic acid) would stack too many actives. That is why the Pore Eraser cream replaces Olay on pimple nights.",
       "Skip the azelaic acid cream on pimple nights. Using both stacks a lot of actives and can cause dryness or irritation.",
+      "Skip TXA 377 tonight too. Pimple Eraser already has niacinamide and acids of its own, and another active on top is more than your skin needs.",
       "Persistent or painful acne is worth checking with a dermatologist.",
     ],
   },
@@ -191,7 +212,7 @@ export const ROUTINES: Routine[] = [
 export const QUICK_REFERENCE_ROWS: QuickReferenceRow[] = [
   { step: "Cleanse", morning: "Water", night: "Herb Day 365 Foaming Cleanser", extra: "Same", pimples: "Same" },
   { step: "Tone", morning: "Celeteque Hydration Toner", night: "Celeteque Hydration Toner", extra: "Same", pimples: "Same" },
-  { step: "Treat", morning: "TXA 377 Dark Spot Serum", night: "None", extra: "SkinFX Azelaic Acid 20% Cream", pimples: "QuickFX Pimple Eraser (spots only)" },
+  { step: "Treat", morning: "Dermax Radiance Morning Serum", night: "TXA 377 Dark Spot Serum", extra: "SkinFX Azelaic Acid 20% Cream", pimples: "QuickFX Pimple Eraser (spots only)" },
   { step: "Moisturize", morning: "Hyalucera Moisturizer", night: "Olay Vitamin C + Peptide 24", extra: "QuickFX Pore Eraser Moisturizing Cream", pimples: "QuickFX Pore Eraser Moisturizing Cream" },
   { step: "Protect", morning: "Skin Aqua UV Gel SPF 50+", night: "None", extra: "None", pimples: "None" },
 ]

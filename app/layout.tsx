@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: "Violet's Skincare Corner | My Skincare Routine",
-  description: "A thoughtful skincare guide with morning, night, extra-time, and pimple-night routines from Violet's Skincare Corner.",
+  description: "A thoughtful skincare guide with a five-step brightening morning routine, plus night, extra-time, and pimple-night routines from Violet's Skincare Corner.",
   generator: 'v0.app',
   icons: {
     icon: [
