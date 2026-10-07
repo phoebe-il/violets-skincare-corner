@@ -89,14 +89,14 @@ export const PRODUCTS: Record<ProductId, Product> = {
   },
   olay: {
     name: "Olay Regenerist Vitamin C + Peptide 24 Hydrating Moisturizer",
-    image: "/products/olay.jpg",
+    image: "/products/olay.png",
     short: "A brightening gel-cream with vitamin C, niacinamide and peptides.",
     ingredients: ["Vitamin C (3-O-Ethyl Ascorbic Acid)", "Niacinamide", "Peptides (Matrixyl)", "Panthenol"],
     help: "A hydrating gel-cream that works while you sleep to brighten dullness, plump the look of fine lines, and wake you up with soft, rested-looking skin.",
   },
   aze: {
     name: "SkinFX Azelaic Acid 20% Cream with Ceramide",
-    image: "/products/azelaic.jpg",
+    image: "/products/azelaic.png",
     short: "A 20% azelaic acid cream cushioned with barrier-supporting ingredients.",
     ingredients: ["Azelaic Acid (20%)", "Ceramide AP", "Centella Asiatica", "Squalane", "Shea Butter", "Panthenol", "Sodium Hyaluronate", "Allantoin", "Licorice Root Extract"],
     help: "Azelaic acid is one of the gentlest actives. It helps calm redness, fade marks and keep breakouts down, while ceramides and squalane cushion it so skin stays soft. It does not make skin sun-sensitive, though daily sunscreen is still a must.",
@@ -112,7 +112,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
   },
   pim: {
     name: "QuickFX Pimple Eraser Cream",
-    image: "/products/pimple.jpg",
+    image: "/products/pimple.png",
     short: "A targeted leave-on treatment for individual pimples.",
     ingredients: ["Salicylic Acid (1%)", "Glycolic Acid (0.5%)", "Niacinamide (0.5%)", "Zinc Oxide", "Vitamin C"],
     help: "Dries up pimples, helps prevent dark scars and keeps pores clear, while the toner and moisturizer around it keep the rest of your face comfortable.",
