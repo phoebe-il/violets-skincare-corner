@@ -1,4 +1,4 @@
-export type RoutineId = "morning" | "night" | "extra" | "pimples"
+export type RoutineId = "morning" | "after-shower" | "night" | "extra" | "pimples"
 
 type ProductId =
   | "water"
@@ -16,6 +16,14 @@ type ProductId =
 export type RoutineStep = {
   productId: ProductId
   action: string
+  productName?: string
+  short?: string
+  ingredients?: string[]
+  help?: string
+  tips?: Array<{ label: string; text: string }>
+  optional?: boolean
+  visualTitle?: string
+  visualCaption?: string
 }
 
 export type Product = {
@@ -41,6 +49,7 @@ export type Routine = {
 export type QuickReferenceRow = {
   step: string
   morning: string
+  afterShower: string
   night: string
   extra: string
   pimples: string
@@ -150,6 +159,48 @@ export const ROUTINES: Routine[] = [
     ],
   },
   {
+    id: "after-shower",
+    tabLabel: "After shower",
+    kicker: "BETWEEN RITUALS",
+    title: "A calm in-between",
+    intro: "Rehydrate right after you wash: pat dry, tone, moisturize, and add sunscreen only if you are heading out.",
+    steps: [
+      {
+        productId: "water",
+        action: "Pat dry",
+        productName: "Pat your face dry",
+        short: "Press a clean towel gently on your skin. Leave it slightly damp.",
+        help: "Rubbing irritates skin that is already softened by warm water. Patting leaves a little moisture on the surface, which the toner and moisturizer can then hold in.",
+        visualTitle: "Pat",
+        visualCaption: "clean towel",
+      },
+      {
+        productId: "toner",
+        action: "Tone",
+        tips: [{ label: "This routine", text: "Apply while skin is still slightly damp so it holds on to the water." }],
+      },
+      {
+        productId: "hyalu",
+        action: "Moisturize",
+        tips: [{ label: "This routine", text: "This is your only moisturizer here. Save Olay for night, since it carries vitamin C and lactic acid." }],
+      },
+      {
+        productId: "aqua",
+        action: "Protect",
+        optional: true,
+        tips: [
+          { label: "This routine", text: "Only if you will be outdoors or sitting by a bright window. Skip it if you are staying in for the evening." },
+          { label: "Tip", text: "Reapply every 2 to 3 hours if you are outdoors." },
+        ],
+      },
+    ],
+    overviewNote: "Keep it light: hydrate now, and leave the serums and treatments for morning and night.",
+    note: [
+      "Warm water loosens your skin's natural oils, so the best move is to rehydrate within a few minutes while skin is still slightly damp. This routine uses only your toner and the hyaluronic acid, ceramide and panthenol in Hyalucera, with no brighteners or acids, so nothing overlaps with Dermax in the morning or with TXA 377, Olay and your treatments at night.",
+      "Skip the foaming cleanser here, because you have just rinsed in the shower and will cleanse again before bed, and washing twice in a row can leave skin tight. If your shower is within an hour or two of bedtime, skip this tab and go straight to the Night routine.",
+    ],
+  },
+  {
     id: "night",
     tabLabel: "Night",
     kicker: "YOUR PM RITUAL",
@@ -210,9 +261,9 @@ export const ROUTINES: Routine[] = [
 ]
 
 export const QUICK_REFERENCE_ROWS: QuickReferenceRow[] = [
-  { step: "Cleanse", morning: "Water", night: "Herb Day 365 Foaming Cleanser", extra: "Same", pimples: "Same" },
-  { step: "Tone", morning: "Celeteque Hydration Toner", night: "Celeteque Hydration Toner", extra: "Same", pimples: "Same" },
-  { step: "Treat", morning: "Dermax Radiance Morning Serum", night: "TXA 377 Dark Spot Serum", extra: "SkinFX Azelaic Acid 20% Cream", pimples: "QuickFX Pimple Eraser (spots only)" },
-  { step: "Moisturize", morning: "Hyalucera Moisturizer", night: "Olay Vitamin C + Peptide 24", extra: "QuickFX Pore Eraser Moisturizing Cream", pimples: "QuickFX Pore Eraser Moisturizing Cream" },
-  { step: "Protect", morning: "Skin Aqua UV Gel SPF 50+", night: "None", extra: "None", pimples: "None" },
+  { step: "Cleanse", morning: "Water", afterShower: "Pat dry", night: "Herb Day 365 Foaming Cleanser", extra: "Same", pimples: "Same" },
+  { step: "Tone", morning: "Celeteque Hydration Toner", afterShower: "Celeteque Hydration Toner", night: "Celeteque Hydration Toner", extra: "Same", pimples: "Same" },
+  { step: "Treat", morning: "Dermax Radiance Morning Serum", afterShower: "None", night: "TXA 377 Dark Spot Serum", extra: "SkinFX Azelaic Acid 20% Cream", pimples: "QuickFX Pimple Eraser (spots only)" },
+  { step: "Moisturize", morning: "Hyalucera Moisturizer", afterShower: "Hyalucera Moisturizer", night: "Olay Vitamin C + Peptide 24", extra: "QuickFX Pore Eraser Moisturizing Cream", pimples: "QuickFX Pore Eraser Moisturizing Cream" },
+  { step: "Protect", morning: "Skin Aqua UV Gel SPF 50+", afterShower: "Skin Aqua UV Gel (only if going out)", night: "None", extra: "None", pimples: "None" },
 ]

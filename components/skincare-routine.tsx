@@ -8,11 +8,14 @@ import {
   Leaf,
   Moon,
   ShieldCheck,
+  ShowerHead,
   Sparkles,
   Sun,
   Target,
+  X,
+  ZoomIn,
 } from 'lucide-react'
-import { useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import {
   PRODUCTS,
   QUICK_REFERENCE_ROWS,
@@ -24,6 +27,7 @@ import {
 
 const ROUTINE_ICONS = {
   morning: Sun,
+  'after-shower': ShowerHead,
   night: Moon,
   extra: Sparkles,
   pimples: Target,
@@ -33,10 +37,16 @@ function ProductVisual({
   productId,
   productName,
   priority = false,
+  visualTitle,
+  visualCaption,
+  onOpen,
 }: {
   productId: RoutineStep['productId']
   productName: string
   priority?: boolean
+  visualTitle?: string
+  visualCaption?: string
+  onOpen?: (image: string, name: string, opener: HTMLButtonElement) => void
 }) {
   const product = PRODUCTS[productId]
 
@@ -44,24 +54,30 @@ function ProductVisual({
     return (
       <div className="product-visual product-visual-water" aria-hidden="true">
         <Droplets className="water-icon" strokeWidth={1.4} />
-        <span>H₂O</span>
-        <small>just water</small>
+        <span>{visualTitle ?? 'H₂O'}</span>
+        <small>{visualCaption ?? 'just water'}</small>
       </div>
     )
   }
 
   return (
-    <div className="product-visual">
+    <button
+      className="product-visual product-photo-button"
+      type="button"
+      aria-label={`View larger photo of ${productName}`}
+      onClick={(event) => onOpen?.(product.image!, productName, event.currentTarget)}
+    >
       <Image
         src={product.image}
-        alt={productName}
+        alt=""
         width={420}
         height={420}
         sizes={priority ? '(max-width: 760px) 70vw, 320px' : '(max-width: 640px) 104px, 140px'}
         className={product.image.endsWith('.png') ? 'product-image product-image-cutout' : 'product-image'}
         priority={priority}
       />
-    </div>
+      <span className="zoom-badge" aria-hidden="true"><ZoomIn /></span>
+    </button>
   )
 }
 
@@ -69,29 +85,42 @@ function ProductStepCard({
   step,
   index,
   total,
+  onOpen,
 }: {
   step: RoutineStep
   index: number
   total: number
+  onOpen: (image: string, name: string, opener: HTMLButtonElement) => void
 }) {
   const product = PRODUCTS[step.productId]
+  const productName = step.productName ?? product.name
+  const summary = step.short ?? product.short
+  const help = step.help ?? product.help
+  const ingredients = step.ingredients ?? product.ingredients
+  const tips = step.tips ?? (product.tip ? [{ label: 'Tip', text: product.tip }] : [])
 
   return (
     <li className="step-card">
-      <ProductVisual productId={step.productId} productName={product.name} />
+      <ProductVisual
+        productId={step.productId}
+        productName={productName}
+        visualTitle={step.visualTitle}
+        visualCaption={step.visualCaption}
+        onOpen={onOpen}
+      />
       <div className="step-card-content">
         <div className="step-card-topline">
           <p className="step-action">
             <span className="step-number">{String(index + 1).padStart(2, '0')}</span>
-            <span>{step.action}</span>
+            <span>{step.action}{step.optional && <span className="optional-tag">Optional</span>}</span>
           </p>
           <span className="step-count">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
         </div>
-        <h3 className="product-name">{product.name}</h3>
-        <p className="product-summary">{product.short}</p>
-        {product.ingredients && (
+        <h3 className="product-name">{productName}</h3>
+        <p className="product-summary">{summary}</p>
+        {ingredients && (
           <ul className="ingredient-list" aria-label="Highlighted ingredients">
-            {product.ingredients.map((ingredient) => (
+            {ingredients.map((ingredient) => (
               <li key={ingredient}>{ingredient}</li>
             ))}
           </ul>
@@ -101,14 +130,14 @@ function ProductStepCard({
             <span>How it helps</span>
             <ChevronDown aria-hidden="true" />
           </summary>
-          <p>{product.help}</p>
+          <p>{help}</p>
         </details>
-        {product.tip && (
-          <p className="product-tip">
-            <strong>Tip</strong>
-            <span>{product.tip}</span>
+        {tips.map((tip) => (
+          <p className="product-tip" key={`${tip.label}-${tip.text}`}>
+            <strong>{tip.label}</strong>
+            <span>{tip.text}</span>
           </p>
-        )}
+        ))}
       </div>
     </li>
   )
@@ -130,7 +159,7 @@ function RoutineOverview({ routine }: { routine: Routine }) {
             <span className="overview-index">{String(index + 1).padStart(2, '0')}</span>
             <span className="overview-step-copy">
               <strong>{step.action}</strong>
-              <span>{PRODUCTS[step.productId].short}</span>
+              <span>{step.short ?? PRODUCTS[step.productId].short}</span>
             </span>
           </li>
         ))}
@@ -177,14 +206,15 @@ function QuickReference() {
         </div>
         <span className="reference-mark" aria-hidden="true"><Leaf /></span>
       </div>
-      <p className="scroll-hint">Swipe horizontally to compare all four routines.</p>
+      <p className="scroll-hint">Swipe horizontally to compare all five routines.</p>
       <div className="reference-table-wrap" role="region" aria-label="Routine comparison table" tabIndex={0}>
         <table className="reference-table">
-          <caption className="sr-only">Products used for each step in the morning, night, extra-time, and pimple-night routines.</caption>
+          <caption className="sr-only">Products used for each step in the morning, after-shower, night, extra-time, and pimple-night routines.</caption>
           <thead>
             <tr>
               <th scope="col">Step</th>
               <th scope="col">Morning</th>
+              <th scope="col">After shower</th>
               <th scope="col">Night</th>
               <th scope="col">Extra-time night</th>
               <th scope="col">Pimple night</th>
@@ -195,6 +225,7 @@ function QuickReference() {
               <tr key={row.step}>
                 <th scope="row">{row.step}</th>
                 <td>{row.morning}</td>
+                <td>{row.afterShower}</td>
                 <td>{row.night}</td>
                 <td>{row.extra}</td>
                 <td>{row.pimples}</td>
@@ -209,8 +240,53 @@ function QuickReference() {
 
 export default function SkincareRoutine() {
   const [activeRoutineId, setActiveRoutineId] = useState<RoutineId>('morning')
+  const [zoomedProduct, setZoomedProduct] = useState<{ image: string; name: string } | null>(null)
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const openerRef = useRef<HTMLButtonElement | null>(null)
   const activeRoutine = ROUTINES.find((routine) => routine.id === activeRoutineId) ?? ROUTINES[0]
+
+  useEffect(() => {
+    if (!zoomedProduct) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    closeButtonRef.current?.focus()
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [zoomedProduct])
+
+  function openProductZoom(image: string, name: string, opener: HTMLButtonElement) {
+    openerRef.current = opener
+    setZoomedProduct({ image, name })
+  }
+
+  function closeProductZoom() {
+    setZoomedProduct(null)
+    openerRef.current?.focus()
+  }
+
+  function handleZoomKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      closeProductZoom()
+      return
+    }
+
+    if (event.key !== 'Tab') return
+    const focusable = event.currentTarget.querySelectorAll<HTMLElement>('button')
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault()
+      last?.focus()
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault()
+      first?.focus()
+    }
+  }
 
   function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let nextIndex: number | undefined
@@ -258,7 +334,7 @@ export default function SkincareRoutine() {
               Explore your routine <ArrowUpRight aria-hidden="true" />
             </a>
             <div className="hero-facts" aria-label="Routine details">
-              <span><strong>04</strong> routine paths</span>
+              <span><strong>05</strong> routine paths</span>
               <span className="fact-divider" aria-hidden="true" />
               <span><strong>01</strong> simple starting point</span>
             </div>
@@ -342,7 +418,7 @@ export default function SkincareRoutine() {
                 </div>
                 <ol className="routine-steps">
                   {activeRoutine.steps.map((step, index) => (
-                    <ProductStepCard key={`${activeRoutine.id}-${step.productId}-${index}`} step={step} index={index} total={activeRoutine.steps.length} />
+                    <ProductStepCard key={`${activeRoutine.id}-${step.productId}-${index}`} step={step} index={index} total={activeRoutine.steps.length} onOpen={openProductZoom} />
                   ))}
                 </ol>
                 <RoutineNote routine={activeRoutine} />
@@ -355,6 +431,19 @@ export default function SkincareRoutine() {
         <QuickReference />
       </main>
 
+      {zoomedProduct && (
+        <div className="zoom-backdrop" role="presentation" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) closeProductZoom()
+        }}>
+          <div className="zoom-dialog" role="dialog" aria-modal="true" aria-label={`Larger photo of ${zoomedProduct.name}`} onKeyDown={handleZoomKeyDown}>
+            <button ref={closeButtonRef} className="zoom-close" type="button" aria-label="Close larger photo" onClick={closeProductZoom}>
+              <X aria-hidden="true" />
+            </button>
+            <Image src={zoomedProduct.image} alt={zoomedProduct.name} width={560} height={560} className="zoom-image" />
+            <p className="zoom-caption">{zoomedProduct.name}</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
